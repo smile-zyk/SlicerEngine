@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package hello;
+
+service HelloWorld
+{
+	rpc SayHelloWorld(EmptyRequest) returns(HelloReply){}
+	rpc HelloFromServer(HelloRequest) returns(HelloReply){}
+}
+
+message HelloReply
+{
+	string message = 1;
+}
+
+message EmptyRequest{}
+
+message HelloRequest
+{
+	string name = 1;
+}
