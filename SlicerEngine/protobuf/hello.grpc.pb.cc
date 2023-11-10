@@ -24,6 +24,7 @@ namespace hello {
 static const char* HelloWorld_method_names[] = {
   "/hello.HelloWorld/SayHelloWorld",
   "/hello.HelloWorld/HelloFromServer",
+  "/hello.HelloWorld/ReceiveObject",
 };
 
 std::unique_ptr< HelloWorld::Stub> HelloWorld::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -35,6 +36,7 @@ std::unique_ptr< HelloWorld::Stub> HelloWorld::NewStub(const std::shared_ptr< ::
 HelloWorld::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_SayHelloWorld_(HelloWorld_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_HelloFromServer_(HelloWorld_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ReceiveObject_(HelloWorld_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status HelloWorld::Stub::SayHelloWorld(::grpc::ClientContext* context, const ::hello::EmptyRequest& request, ::hello::HelloReply* response) {
@@ -83,6 +85,29 @@ void HelloWorld::Stub::async::HelloFromServer(::grpc::ClientContext* context, co
   return result;
 }
 
+::grpc::Status HelloWorld::Stub::ReceiveObject(::grpc::ClientContext* context, const ::hello::Object& request, ::hello::EmptyReply* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::hello::Object, ::hello::EmptyReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ReceiveObject_, context, request, response);
+}
+
+void HelloWorld::Stub::async::ReceiveObject(::grpc::ClientContext* context, const ::hello::Object* request, ::hello::EmptyReply* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::hello::Object, ::hello::EmptyReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ReceiveObject_, context, request, response, std::move(f));
+}
+
+void HelloWorld::Stub::async::ReceiveObject(::grpc::ClientContext* context, const ::hello::Object* request, ::hello::EmptyReply* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ReceiveObject_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::hello::EmptyReply>* HelloWorld::Stub::PrepareAsyncReceiveObjectRaw(::grpc::ClientContext* context, const ::hello::Object& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::hello::EmptyReply, ::hello::Object, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ReceiveObject_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::hello::EmptyReply>* HelloWorld::Stub::AsyncReceiveObjectRaw(::grpc::ClientContext* context, const ::hello::Object& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncReceiveObjectRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 HelloWorld::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       HelloWorld_method_names[0],
@@ -104,6 +129,16 @@ HelloWorld::Service::Service() {
              ::hello::HelloReply* resp) {
                return service->HelloFromServer(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      HelloWorld_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< HelloWorld::Service, ::hello::Object, ::hello::EmptyReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](HelloWorld::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::hello::Object* req,
+             ::hello::EmptyReply* resp) {
+               return service->ReceiveObject(ctx, req, resp);
+             }, this)));
 }
 
 HelloWorld::Service::~Service() {
@@ -117,6 +152,13 @@ HelloWorld::Service::~Service() {
 }
 
 ::grpc::Status HelloWorld::Service::HelloFromServer(::grpc::ServerContext* context, const ::hello::HelloRequest* request, ::hello::HelloReply* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status HelloWorld::Service::ReceiveObject(::grpc::ServerContext* context, const ::hello::Object* request, ::hello::EmptyReply* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -6,6 +6,7 @@ service HelloWorld
 {
 	rpc SayHelloWorld(EmptyRequest) returns(HelloReply){}
 	rpc HelloFromServer(HelloRequest) returns(HelloReply){}
+	rpc ReceiveObject(Object) returns(EmptyReply){}
 }
 
 message HelloReply
@@ -14,8 +15,18 @@ message HelloReply
 }
 
 message EmptyRequest{}
+message EmptyReply{}
 
 message HelloRequest
 {
 	string name = 1;
+}
+
+message Object
+{
+    int64 id = 1;
+    bytes vertices = 2; //An array of 3 floats.
+    bytes normals = 3; //An array of 3 floats.
+    bytes indices = 4; //An array of ints.
+    string name = 6; //Mesh name
 }

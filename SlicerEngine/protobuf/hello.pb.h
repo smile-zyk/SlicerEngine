@@ -46,6 +46,9 @@ struct TableStruct_hello_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_hello_2eproto;
 namespace hello {
+class EmptyReply;
+struct EmptyReplyDefaultTypeInternal;
+extern EmptyReplyDefaultTypeInternal _EmptyReply_default_instance_;
 class EmptyRequest;
 struct EmptyRequestDefaultTypeInternal;
 extern EmptyRequestDefaultTypeInternal _EmptyRequest_default_instance_;
@@ -55,11 +58,16 @@ extern HelloReplyDefaultTypeInternal _HelloReply_default_instance_;
 class HelloRequest;
 struct HelloRequestDefaultTypeInternal;
 extern HelloRequestDefaultTypeInternal _HelloRequest_default_instance_;
+class Object;
+struct ObjectDefaultTypeInternal;
+extern ObjectDefaultTypeInternal _Object_default_instance_;
 }  // namespace hello
 PROTOBUF_NAMESPACE_OPEN
+template<> ::hello::EmptyReply* Arena::CreateMaybeMessage<::hello::EmptyReply>(Arena*);
 template<> ::hello::EmptyRequest* Arena::CreateMaybeMessage<::hello::EmptyRequest>(Arena*);
 template<> ::hello::HelloReply* Arena::CreateMaybeMessage<::hello::HelloReply>(Arena*);
 template<> ::hello::HelloRequest* Arena::CreateMaybeMessage<::hello::HelloRequest>(Arena*);
+template<> ::hello::Object* Arena::CreateMaybeMessage<::hello::Object>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace hello {
 
@@ -336,6 +344,124 @@ class EmptyRequest final :
 };
 // -------------------------------------------------------------------
 
+class EmptyReply final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:hello.EmptyReply) */ {
+ public:
+  inline EmptyReply() : EmptyReply(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR EmptyReply(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  EmptyReply(const EmptyReply& from);
+  EmptyReply(EmptyReply&& from) noexcept
+    : EmptyReply() {
+    *this = ::std::move(from);
+  }
+
+  inline EmptyReply& operator=(const EmptyReply& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EmptyReply& operator=(EmptyReply&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EmptyReply& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const EmptyReply* internal_default_instance() {
+    return reinterpret_cast<const EmptyReply*>(
+               &_EmptyReply_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(EmptyReply& a, EmptyReply& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(EmptyReply* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EmptyReply* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EmptyReply* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<EmptyReply>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const EmptyReply& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const EmptyReply& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "hello.EmptyReply";
+  }
+  protected:
+  explicit EmptyReply(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:hello.EmptyReply)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+  };
+  friend struct ::TableStruct_hello_2eproto;
+};
+// -------------------------------------------------------------------
+
 class HelloRequest final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:hello.HelloRequest) */ {
  public:
@@ -384,7 +510,7 @@ class HelloRequest final :
                &_HelloRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(HelloRequest& a, HelloRequest& b) {
     a.Swap(&b);
@@ -487,6 +613,218 @@ class HelloRequest final :
   union { Impl_ _impl_; };
   friend struct ::TableStruct_hello_2eproto;
 };
+// -------------------------------------------------------------------
+
+class Object final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:hello.Object) */ {
+ public:
+  inline Object() : Object(nullptr) {}
+  ~Object() override;
+  explicit PROTOBUF_CONSTEXPR Object(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Object(const Object& from);
+  Object(Object&& from) noexcept
+    : Object() {
+    *this = ::std::move(from);
+  }
+
+  inline Object& operator=(const Object& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Object& operator=(Object&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Object& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Object* internal_default_instance() {
+    return reinterpret_cast<const Object*>(
+               &_Object_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(Object& a, Object& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Object* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Object* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Object* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Object>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Object& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const Object& from) {
+    Object::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Object* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "hello.Object";
+  }
+  protected:
+  explicit Object(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kVerticesFieldNumber = 2,
+    kNormalsFieldNumber = 3,
+    kIndicesFieldNumber = 4,
+    kNameFieldNumber = 6,
+    kIdFieldNumber = 1,
+  };
+  // bytes vertices = 2;
+  void clear_vertices();
+  const std::string& vertices() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_vertices(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_vertices();
+  PROTOBUF_NODISCARD std::string* release_vertices();
+  void set_allocated_vertices(std::string* vertices);
+  private:
+  const std::string& _internal_vertices() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_vertices(const std::string& value);
+  std::string* _internal_mutable_vertices();
+  public:
+
+  // bytes normals = 3;
+  void clear_normals();
+  const std::string& normals() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_normals(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_normals();
+  PROTOBUF_NODISCARD std::string* release_normals();
+  void set_allocated_normals(std::string* normals);
+  private:
+  const std::string& _internal_normals() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_normals(const std::string& value);
+  std::string* _internal_mutable_normals();
+  public:
+
+  // bytes indices = 4;
+  void clear_indices();
+  const std::string& indices() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_indices(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_indices();
+  PROTOBUF_NODISCARD std::string* release_indices();
+  void set_allocated_indices(std::string* indices);
+  private:
+  const std::string& _internal_indices() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_indices(const std::string& value);
+  std::string* _internal_mutable_indices();
+  public:
+
+  // string name = 6;
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // int64 id = 1;
+  void clear_id();
+  int64_t id() const;
+  void set_id(int64_t value);
+  private:
+  int64_t _internal_id() const;
+  void _internal_set_id(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:hello.Object)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr vertices_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr normals_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr indices_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+    int64_t id_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_hello_2eproto;
+};
 // ===================================================================
 
 
@@ -554,6 +892,10 @@ inline void HelloReply::set_allocated_message(std::string* message) {
 
 // -------------------------------------------------------------------
 
+// EmptyReply
+
+// -------------------------------------------------------------------
+
 // HelloRequest
 
 // string name = 1;
@@ -606,9 +948,237 @@ inline void HelloRequest::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:hello.HelloRequest.name)
 }
 
+// -------------------------------------------------------------------
+
+// Object
+
+// int64 id = 1;
+inline void Object::clear_id() {
+  _impl_.id_ = int64_t{0};
+}
+inline int64_t Object::_internal_id() const {
+  return _impl_.id_;
+}
+inline int64_t Object::id() const {
+  // @@protoc_insertion_point(field_get:hello.Object.id)
+  return _internal_id();
+}
+inline void Object::_internal_set_id(int64_t value) {
+  
+  _impl_.id_ = value;
+}
+inline void Object::set_id(int64_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:hello.Object.id)
+}
+
+// bytes vertices = 2;
+inline void Object::clear_vertices() {
+  _impl_.vertices_.ClearToEmpty();
+}
+inline const std::string& Object::vertices() const {
+  // @@protoc_insertion_point(field_get:hello.Object.vertices)
+  return _internal_vertices();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Object::set_vertices(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.vertices_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:hello.Object.vertices)
+}
+inline std::string* Object::mutable_vertices() {
+  std::string* _s = _internal_mutable_vertices();
+  // @@protoc_insertion_point(field_mutable:hello.Object.vertices)
+  return _s;
+}
+inline const std::string& Object::_internal_vertices() const {
+  return _impl_.vertices_.Get();
+}
+inline void Object::_internal_set_vertices(const std::string& value) {
+  
+  _impl_.vertices_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Object::_internal_mutable_vertices() {
+  
+  return _impl_.vertices_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Object::release_vertices() {
+  // @@protoc_insertion_point(field_release:hello.Object.vertices)
+  return _impl_.vertices_.Release();
+}
+inline void Object::set_allocated_vertices(std::string* vertices) {
+  if (vertices != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.vertices_.SetAllocated(vertices, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.vertices_.IsDefault()) {
+    _impl_.vertices_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:hello.Object.vertices)
+}
+
+// bytes normals = 3;
+inline void Object::clear_normals() {
+  _impl_.normals_.ClearToEmpty();
+}
+inline const std::string& Object::normals() const {
+  // @@protoc_insertion_point(field_get:hello.Object.normals)
+  return _internal_normals();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Object::set_normals(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.normals_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:hello.Object.normals)
+}
+inline std::string* Object::mutable_normals() {
+  std::string* _s = _internal_mutable_normals();
+  // @@protoc_insertion_point(field_mutable:hello.Object.normals)
+  return _s;
+}
+inline const std::string& Object::_internal_normals() const {
+  return _impl_.normals_.Get();
+}
+inline void Object::_internal_set_normals(const std::string& value) {
+  
+  _impl_.normals_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Object::_internal_mutable_normals() {
+  
+  return _impl_.normals_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Object::release_normals() {
+  // @@protoc_insertion_point(field_release:hello.Object.normals)
+  return _impl_.normals_.Release();
+}
+inline void Object::set_allocated_normals(std::string* normals) {
+  if (normals != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.normals_.SetAllocated(normals, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.normals_.IsDefault()) {
+    _impl_.normals_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:hello.Object.normals)
+}
+
+// bytes indices = 4;
+inline void Object::clear_indices() {
+  _impl_.indices_.ClearToEmpty();
+}
+inline const std::string& Object::indices() const {
+  // @@protoc_insertion_point(field_get:hello.Object.indices)
+  return _internal_indices();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Object::set_indices(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.indices_.SetBytes(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:hello.Object.indices)
+}
+inline std::string* Object::mutable_indices() {
+  std::string* _s = _internal_mutable_indices();
+  // @@protoc_insertion_point(field_mutable:hello.Object.indices)
+  return _s;
+}
+inline const std::string& Object::_internal_indices() const {
+  return _impl_.indices_.Get();
+}
+inline void Object::_internal_set_indices(const std::string& value) {
+  
+  _impl_.indices_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Object::_internal_mutable_indices() {
+  
+  return _impl_.indices_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Object::release_indices() {
+  // @@protoc_insertion_point(field_release:hello.Object.indices)
+  return _impl_.indices_.Release();
+}
+inline void Object::set_allocated_indices(std::string* indices) {
+  if (indices != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.indices_.SetAllocated(indices, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.indices_.IsDefault()) {
+    _impl_.indices_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:hello.Object.indices)
+}
+
+// string name = 6;
+inline void Object::clear_name() {
+  _impl_.name_.ClearToEmpty();
+}
+inline const std::string& Object::name() const {
+  // @@protoc_insertion_point(field_get:hello.Object.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Object::set_name(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:hello.Object.name)
+}
+inline std::string* Object::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:hello.Object.name)
+  return _s;
+}
+inline const std::string& Object::_internal_name() const {
+  return _impl_.name_.Get();
+}
+inline void Object::_internal_set_name(const std::string& value) {
+  
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Object::_internal_mutable_name() {
+  
+  return _impl_.name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Object::release_name() {
+  // @@protoc_insertion_point(field_release:hello.Object.name)
+  return _impl_.name_.Release();
+}
+inline void Object::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:hello.Object.name)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
